@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- With help from W3Schools, Educative, and FreshmaanTech -->
+<html>
+    <head>  
+        <title>A Simple To-Do List</title>
+
+        <style>
+            *,*:before,*:after{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            body{
+                height: 100vh;
+                background: #85b6e7;
+            }
+            /* The spacing and design of the toDo container, from  educative */
+            .container{
+                width: 65%;
+                top: 50%;
+                left: 50%;
+                background: #c5e1e6;
+                border-radius: 10px;
+                min-width: 650px;
+                position: absolute;
+                min-height: 100px;
+                transform: translate(-50%,-50%);
+            }
+
+
+            /* The spacing and design of the new task when added, from  educative*/
+            #userInput{
+                position: relative;
+                padding: 30px 20px;
+            }
+            #userInput input{
+                width: 75%;
+                height: 45px;
+                padding: 12px;
+                color: #111111;
+                font-weight: 500;
+                position: relative;
+                border-radius: 5px;
+                font-family: 'Poppins',sans-serif;
+                font-size: 15px;
+                border: 2px solid #d1d3d4;
+            }
+
+            #userInput input:focus{
+                outline: none;
+                border-color: #1d0d3a;
+            }
+
+            #userInput button{
+                position: relative;
+                float: right;
+                font-weight: 500;
+                font-size: 24px;
+                background-color: #1d0d3a;
+                border: none;
+                color: #ffffff;
+                outline: none;
+                width: 20%;
+                height: 45px;
+                border-radius: 5px;
+                font-family: 'Poppins',sans-serif;
+            }
+
+            /* The spacing and design of the task area and tasks when added*/
+            #tasks{
+                border-radius: 10px;
+                width: 100%;
+                position: relative;
+                background-color: #cbf3ff;
+                padding: 10px 15px;
+                margin-top: 5px;
+            }
+
+            .task{
+                border-radius: 5px;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid #939697;
+                cursor: pointer;
+                background-color: #c5e1e6;
+                height: 50px;
+                margin-bottom: 8px;
+                padding: 5px 10px;
+                display: flex;
+            }
+            .task span{
+                font-family: 'Poppins',sans-serif;
+                font-size: 15px;
+                font-weight: 400;
+            }
+            .task button{
+                background-color: #f79381;
+                color: #353535;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                height: 100%;
+                width: 40px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+
+
+    <body>
+        <div class="container">
+            <div id="userInput">
+                <input type="text" placeholder="Add To-Do's">
+                <button id="submit">Add</button>
+            </div>
+            <div id="tasks">
+
+            </div>
+        </div>
+    </body>
+
+    <script>
+        document.querySelector('#submit').onclick = function(){
+            console.log('clicked');
+            document.querySelector('#tasks').innerHTML += `
+                <div class="task">
+                    <span id="taskname">
+                        ${document.querySelector('#userInput input').value}
+                    </span>
+                    <button class="delete">
+                        <i class="trash"></i>
+                    </button>
+                </div>
+            `;
+
+            var current_tasks = document.querySelectorAll(".delete");
+            for(var i=0; i<current_tasks.length; i++){
+                current_tasks[i].onclick = function(){
+                    this.parentNode.remove();
+                }
+            }
+            
+        }
+    </script>
+
+</html>
